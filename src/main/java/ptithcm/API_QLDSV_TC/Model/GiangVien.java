@@ -1,10 +1,14 @@
 package ptithcm.API_QLDSV_TC.Model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Nationalized;
 
 @Entity
 @Table(name = "GIANGVIEN")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "magv")
 public class GiangVien {
     @Id
     @Nationalized
