@@ -3,7 +3,6 @@ package ptithcm.API_QLDSV_TC.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.http.ResponseEntity;
 import ptithcm.API_QLDSV_TC.Model.LopTinChi;
 
 import java.util.List;
