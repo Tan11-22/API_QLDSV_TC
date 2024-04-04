@@ -19,11 +19,11 @@ public class Lop {
     @Column(name = "KHOAHOC", nullable = false, length = 9)
     private String khoahoc;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "MAKHOA", nullable = false)
     private Khoa makhoa;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_HE")
     private He idHe;
 

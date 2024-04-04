@@ -31,7 +31,7 @@ public class SinhVien {
     @Column(name = "NGAYSINH")
     private LocalDate ngaysinh;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "MALOP", nullable = false)
     private Lop malop;
 
