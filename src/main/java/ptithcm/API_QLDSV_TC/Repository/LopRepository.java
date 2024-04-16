@@ -12,4 +12,9 @@ public interface LopRepository extends JpaRepository<Lop, String> {
     public List<Map<String, ?>> danhSachLopCuaKhoa(String magv, int trangthai);
 
     public Lop findBymalop(String malop);
+
+    @Query(value = "{call SP_UPDATE_LOP(:malop, :tenlop, :khoahoc, :trangthai, :he)}", nativeQuery = true)
+    public int updateLop(String malop, String tenlop, String khoahoc, int trangthai, int he);
+
+    public void deleteBymalop(String malop);
 }
