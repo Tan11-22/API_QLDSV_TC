@@ -47,12 +47,28 @@ public class LopController {
         Khoa khoa = khoaService.khoaTheoMa(lopDTO.getMaKhoa());
         lop.setMakhoa(khoa);
         //set he cho lop
-        He he = heService.heTheoId(lopDTO.getIdHe());
+                    He he = heService.heTheoId(lopDTO.getIdHe());
         lop.setIdHe(he);
         System.out.println(lopDTO.getMaKhoa());
         System.out.println(lop.toString());
 
         if(lopService.addLop(lop) == 1)
+            return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(value = "/cap-nhat", method = RequestMethod.PATCH)
+    public ResponseEntity<?> capNhatLop(@RequestBody @Validated LopDTO lopDTO){
+        int x = lopService.updateLop(lopDTO);
+        if(x == 1)
+            return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(value = "/xoa-lop", method = RequestMethod.DELETE)
+    public ResponseEntity<?> xoaLop(@RequestParam("ma-lop") String maLop){
+        int x = lopService.xoaLop(maLop);
+        if(x == 1)
             return new ResponseEntity<>(HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
