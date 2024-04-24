@@ -84,6 +84,15 @@ public class SinhVien {
         this.email = email;
     }
 
+
+    public String getSdt() {
+        return sdt;
+    }
+
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
+    }
+
     public String getMasv() {
         return masv;
     }
@@ -144,23 +153,9 @@ public class SinhVien {
         return danghihoc;
     }
 
-    public void setDanghihoc(Boolean danghihoc) {
-        this.danghihoc = danghihoc;
-    }
-
-    public String getSdt() {
-        return sdt;
-    }
-
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
-    }
-
     public String getHinhanh() {
         return hinhanh;
     }
 
-    public void setHinhanh(String hinhanh) {
-        this.hinhanh = hinhanh;
-    }
+
 }

@@ -29,7 +29,8 @@ public class TaiKhoan {
     public TaiKhoan() {
 
     }
-    public TaiKhoan(String username, String password,Boolean trangThai, Quyen quyen) {
+
+    public TaiKhoan(String username, String password, Boolean trangThai, Quyen quyen) {
         this.username = username;
         this.password = password;
         this.trangThai = trangThai;
