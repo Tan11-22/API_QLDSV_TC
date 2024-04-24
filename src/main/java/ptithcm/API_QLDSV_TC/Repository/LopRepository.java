@@ -19,5 +19,8 @@ public interface LopRepository extends JpaRepository<Lop, String> {
 
     public void deleteBymalop(String malop);
 
+    @Query(value = "{call SP_FIND_LIST_MA_LOP()}", nativeQuery = true)
+    List<Map<String,Object>> findDanhSachLop();
+
 
 }

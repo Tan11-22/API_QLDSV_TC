@@ -16,6 +16,7 @@ import ptithcm.API_QLDSV_TC.Repository.LopRepository;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 
 @Service
@@ -63,6 +64,14 @@ public class LopService  {
 
     public List<Lop> findAll() {
         return lopRepository.findAll();
+    }
+
+    public Optional<Lop> timLopTheoMa(String maLop) {
+        return lopRepository.findById(maLop);
+    }
+
+    public List<Map<String,Object>> findDanhSachLop() {
+        return lopRepository.findDanhSachLop();
     }
 
 
