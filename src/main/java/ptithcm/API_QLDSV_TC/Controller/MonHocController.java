@@ -9,6 +9,7 @@ import ptithcm.API_QLDSV_TC.Model.MonHoc;
 import ptithcm.API_QLDSV_TC.Service.MonHocService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/mon-hoc")
@@ -41,5 +42,11 @@ public class MonHocController {
         } else {
             return ResponseEntity.ok().build(); // them mon hoc thanh cong
         }
+    }
+
+    @RequestMapping(value = "/so-tc", method = RequestMethod.GET)
+    public ResponseEntity<Map<String, ?>> soTCMonHoc(@RequestParam("ten-mh") String tenMH){
+        Map<String, ?> x = monHocService.soTCMonHoc(tenMH);
+        return new ResponseEntity<>(x, HttpStatus.OK);
     }
 }

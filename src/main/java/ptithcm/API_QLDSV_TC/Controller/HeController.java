@@ -18,7 +18,7 @@ public class HeController {
     @Autowired
     private HeService heService;
 
-    @RequestMapping(value = "danh-sach", method = RequestMethod.GET)
+    @RequestMapping(value = "/danh-sach", method = RequestMethod.GET)
     public ResponseEntity<List<He>> danhSachHeDaoTao(){
         List<He> danhSachHeDaoTao = heService.danhSachHeDaoTao();
         return new ResponseEntity<>(danhSachHeDaoTao, HttpStatus.OK);

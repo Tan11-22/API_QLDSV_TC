@@ -6,6 +6,8 @@ import ptithcm.API_QLDSV_TC.Model.MonHoc;
 import ptithcm.API_QLDSV_TC.Repository.MonHocRepository;
 
 import java.util.List;
+import java.util.Map;
+
 @Service
 public class MonHocService {
     @Autowired
@@ -26,5 +28,9 @@ public class MonHocService {
 
     public MonHoc monHocTheoMa(String maMh){
         return monHocRepository.findBymamh(maMh);
+    }
+
+    public Map<String, ?> soTCMonHoc(String tenMH){
+        return monHocRepository.soTCMonHoc(tenMH);
     }
 }
