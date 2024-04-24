@@ -38,6 +38,10 @@ public class GiangVien {
     @Column(name = "HINHANH")
     private String hinhanh;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "MAGV")
+    TaiKhoan taiKhoan;
+
     public String getMagv() {
         return magv;
     }

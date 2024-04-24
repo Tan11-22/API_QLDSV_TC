@@ -31,7 +31,7 @@ public class SinhVien {
     @Column(name = "NGAYSINH")
     private LocalDate ngaysinh;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "MALOP", nullable = false)
     private Lop malop;
 
@@ -44,6 +44,11 @@ public class SinhVien {
 
     @Column(name = "HINHANH")
     private String hinhanh;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "MASV")
+    @MapsId
+    private TaiKhoan taiKhoan;
 
     public String getMasv() {
         return masv;
