@@ -40,4 +40,8 @@ public class LopService {
             return 0;
         }
     }
+
+    public List<Lop> findAll() {
+        return lopRepository.findAll();
+    }
 }

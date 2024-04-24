@@ -42,6 +42,13 @@ public class GiangVien {
     @Column(name = "HINHANH")
     private String hinhanh;
 
+    @Column(name = "SDT")
+    private String sdt;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "MAGV")
+    private TaiKhoan taiKhoan;
+
     public String getMagv() {
         return magv;
     }

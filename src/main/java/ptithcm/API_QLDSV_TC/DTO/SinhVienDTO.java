@@ -1,60 +1,24 @@
-package ptithcm.API_QLDSV_TC.Model;
+package ptithcm.API_QLDSV_TC.DTO;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.Nationalized;
-
-import java.time.LocalDate;
-import java.util.Date;
-
-@Entity
-@Table(name = "SINHVIEN")
-public class SinhVien {
-    @Id
-    @Nationalized
-    @Column(name = "MASV", nullable = false, length = 10)
+public class SinhVienDTO {
     private String masv;
-
-    @Nationalized
-    @Column(name = "HO", nullable = false, length = 50)
     private String ho;
-
-    @Nationalized
-    @Column(name = "TEN", nullable = false, length = 10)
     private String ten;
-
-    @Column(name = "PHAI", nullable = false)
-    private Boolean phai = false;
-
-    @Nationalized
-    @Column(name = "DIACHI", length = 100)
+    private  Boolean phai;
     private String diachi;
-
-    @Column(name = "NGAYSINH")
     private String ngaysinh;
-
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "MALOP", nullable = false)
-    private Lop malop;
-
-    @Column(name = "DANGHIHOC", nullable = false)
-    private Boolean danghihoc = false;
-
-
-    @Column(name = "SDT")
+    private String malop;
+    private Boolean danghihoc ;
     private String sdt;
-
-    @Column(name = "HINHANH")
     private String hinhanh;
-    @Column(name = "EMAIL")
     private String email;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "MASV")
-    private TaiKhoan taiKhoan;
+    public SinhVienDTO()
+    {
 
-    public SinhVien() {
     }
 
-    public SinhVien(String masv, String ho, String ten, Boolean phai, String diachi, String ngaysinh, Lop malop, Boolean danghihoc, String sdt, String hinhanh, String email) {
+
+    public SinhVienDTO(String masv, String ho, String ten, Boolean phai, String diachi, String ngaysinh, String malop, Boolean danghihoc, String sdt, String hinhanh, String email) {
         this.masv = masv;
         this.ho = ho;
         this.ten = ten;
@@ -72,16 +36,16 @@ public class SinhVien {
         return email;
     }
 
-    public TaiKhoan getTaiKhoan() {
-        return taiKhoan;
-    }
-
-    public void setTaiKhoan(TaiKhoan taiKhoan) {
-        this.taiKhoan = taiKhoan;
-    }
-
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getHinhanh() {
+        return hinhanh;
+    }
+
+    public void setHinhanh(String hinhanh) {
+        this.hinhanh = hinhanh;
     }
 
     public String getMasv() {
@@ -132,11 +96,11 @@ public class SinhVien {
         this.ngaysinh = ngaysinh;
     }
 
-    public Lop getMalop() {
+    public String getMalop() {
         return malop;
     }
 
-    public void setMalop(Lop malop) {
+    public void setMalop(String malop) {
         this.malop = malop;
     }
 
@@ -154,13 +118,5 @@ public class SinhVien {
 
     public void setSdt(String sdt) {
         this.sdt = sdt;
-    }
-
-    public String getHinhanh() {
-        return hinhanh;
-    }
-
-    public void setHinhanh(String hinhanh) {
-        this.hinhanh = hinhanh;
     }
 }
