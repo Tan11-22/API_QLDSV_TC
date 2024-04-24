@@ -1,22 +1,33 @@
 package ptithcm.API_QLDSV_TC.Service;
-import java.util.List;
+
+
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ptithcm.API_QLDSV_TC.Model.Nganh;
 import ptithcm.API_QLDSV_TC.Repository.NganhRepository;
+
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class NganhService {
-    
     @Autowired
     NganhRepository nganhRepository;
 
-    public List<Nganh> danhSachNganh(){
-        return nganhRepository.findAll();
+    public List<Map<String, Object>> findDanhSachNganh() {
+        return nganhRepository.findDanhSachNganh();
     }
-
-    public Nganh nganhTheoId(int id){
-        return nganhRepository.findByid(id);
-    }
+        
+    
+        public List<Nganh> danhSachNganh(){
+            return nganhRepository.findAll();
+        }
+    
+        public Nganh nganhTheoId(int id){
+            return nganhRepository.findByid(id);}
+    
 }
