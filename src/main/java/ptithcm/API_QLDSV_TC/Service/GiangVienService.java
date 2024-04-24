@@ -6,7 +6,11 @@ import ptithcm.API_QLDSV_TC.Model.GiangVien;
 import ptithcm.API_QLDSV_TC.Repository.GiangVienRepository;
 
 import java.util.List;
+
 import java.util.Optional;
+
+import java.util.Map;
+
 
 @Service
 public class GiangVienService {
@@ -34,7 +38,10 @@ public class GiangVienService {
     }
 
     // Kiem tra ton tai
-    public boolean isExistsById(String id){
+    public boolean isExistsById(String id) {
         return giangVienRepository.existsById(id);
+    }
+    public Map<String, ?> thongTinCaNhanGiangVien(String magv){
+        return giangVienRepository.thongTinCaNhanGiangVien(magv);
     }
 }

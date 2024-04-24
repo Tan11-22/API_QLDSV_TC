@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ptithcm.API_QLDSV_TC.DTO.MonHocDTO;
 import ptithcm.API_QLDSV_TC.Model.MonHoc;
 import ptithcm.API_QLDSV_TC.Service.MonHocService;
 
@@ -40,6 +41,31 @@ public class MonHocController {
             return ResponseEntity.badRequest().build();
         } else {
             return ResponseEntity.ok().build(); // them mon hoc thanh cong
+        }
+    }
+
+    @RequestMapping(value = "/them-mon-hoc-moi", method = RequestMethod.POST)
+    public ResponseEntity<?> themMonHocMoi(@Validated @RequestBody MonHocDTO monHoc){
+        if(monHocService.themMonHocMoi(monHoc) == 0){
+            return ResponseEntity.badRequest().build();
+        } else {
+            return ResponseEntity.ok().build();
+        }
+    }
+    @RequestMapping(value = "/update-mon-hoc", method = RequestMethod.POST)
+    public ResponseEntity<?> updateMonHoc(@Validated @RequestBody MonHocDTO monHoc){
+        if(monHocService.updateMonHoc(monHoc) == 0){
+            return ResponseEntity.badRequest().build();
+        } else {
+            return ResponseEntity.ok().build();
+        }
+    }
+    @RequestMapping(value = "/xoa-mon-hoc", method = RequestMethod.POST)
+    public ResponseEntity<?> xoaMonHoc(@Validated @RequestParam("mamh") String mamh){
+        if(monHocService.xoaMonHoc(mamh) == 0){
+            return ResponseEntity.badRequest().build();
+        } else {
+            return ResponseEntity.ok().build();
         }
     }
 }

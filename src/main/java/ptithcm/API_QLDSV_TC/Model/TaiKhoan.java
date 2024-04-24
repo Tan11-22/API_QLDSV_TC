@@ -3,7 +3,7 @@ package ptithcm.API_QLDSV_TC.Model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "TAIKHOAN")
+@Table(name="TAIKHOAN")
 public class TaiKhoan {
     @Id
     @Column(name = "USERNAME")
@@ -20,8 +20,8 @@ public class TaiKhoan {
     @JoinColumn(name = "IDQUYEN")
     private Quyen quyen;
 
-    @OneToOne(mappedBy = "taiKhoan", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+
+    @OneToOne(mappedBy = "taiKhoan")
     private SinhVien sinhVien;
 
     @OneToOne(mappedBy = "taiKhoan")

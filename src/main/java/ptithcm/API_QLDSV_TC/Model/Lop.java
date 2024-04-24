@@ -16,6 +16,10 @@ public class Lop {
     private String tenlop;
 
     @Nationalized
+    @Column(name = "TRANGTHAI")
+    private boolean trangThai;
+
+    @Nationalized
     @Column(name = "KHOAHOC", nullable = false, length = 9)
     private String khoahoc;
 
@@ -26,6 +30,9 @@ public class Lop {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ID_HE")
     private He idHe;
+
+    public Lop() {
+    }
 
     public String getMalop() {
         return malop;
@@ -67,4 +74,23 @@ public class Lop {
         this.idHe = idHe;
     }
 
+    public boolean isTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(boolean trangThai) {
+        this.trangThai = trangThai;
+    }
+
+    @Override
+    public String toString() {
+        return "Lop{" +
+                "malop='" + malop + '\'' +
+                ", tenlop='" + tenlop + '\'' +
+                ", trangThai=" + trangThai +
+                ", khoahoc='" + khoahoc + '\'' +
+                ", makhoa=" + makhoa.toString() +
+                ", idHe=" + idHe.toString() +
+                '}';
+    }
 }
