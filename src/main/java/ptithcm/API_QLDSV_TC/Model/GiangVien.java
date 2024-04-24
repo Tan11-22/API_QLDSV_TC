@@ -1,10 +1,14 @@
 package ptithcm.API_QLDSV_TC.Model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Nationalized;
 
 @Entity
 @Table(name = "GIANGVIEN")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "magv")
 public class GiangVien {
     @Id
     @Nationalized
@@ -37,6 +41,44 @@ public class GiangVien {
 
     @Column(name = "HINHANH")
     private String hinhanh;
+
+
+    @Column(name = "SDT")
+    private String sdt;
+
+
+    @Column(name = "EMAIL")
+    private String email;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "MAGV")
+    private TaiKhoan taiKhoan;
+
+
+    public String getSdt() {
+        return sdt;
+    }
+
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public TaiKhoan getTaiKhoan() {
+        return taiKhoan;
+    }
+
+    public void setTaiKhoan(TaiKhoan taiKhoan) {
+        this.taiKhoan = taiKhoan;
+    }
+
 
     public String getMagv() {
         return magv;
