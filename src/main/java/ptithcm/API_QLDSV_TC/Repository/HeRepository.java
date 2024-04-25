@@ -5,4 +5,5 @@ import ptithcm.API_QLDSV_TC.Model.He;
 
 public interface HeRepository extends JpaRepository<He, Integer> {
     public He findByid(int id);
+    public He findBytenHe(String tenhe);
 }
