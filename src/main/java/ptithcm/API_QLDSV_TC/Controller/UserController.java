@@ -36,6 +36,9 @@ public class UserController {
     @Autowired
     private IAuthService authService;
 
+    @Autowired
+    ChuongTrinhDaoTaoService chuongTrinhDaoTaoService;
+
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
     public ResponseEntity<JWTAuthResponse> authenticate(@RequestParam("username") String username,
                                                         @RequestParam("password") String password){
@@ -63,7 +66,6 @@ public class UserController {
         return "role giang vien";
     }
     @GetMapping(value = "danh-sach-lop")
-    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Map<String, Object>>> getAllLop() {
         return ResponseEntity.ok( lopService.findDanhSachLop());
     }
@@ -118,9 +120,28 @@ public class UserController {
         return taiKhoanService.checkUsername(username);
     }
 
-    @GetMapping(value = "danh-sach-tai-khoan-gv")
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<Map<String,Object>>> getTKGV() {
-        return ResponseEntity.ok( taiKhoanService.findDanhSachTaiKhoan());
+    @GetMapping(value = "danh-sach-tai-khoan")
+    public ResponseEntity<List<Map<String,Object>>> getTK(@RequestParam("id") int id) {
+
+        return ResponseEntity.ok( taiKhoanService.findDanhSachTaiKhoan(id));
+    }
+
+    @PutMapping(value = "reset-pass")
+    public boolean resetPass(@RequestParam("username") String username) {
+        return taiKhoanService.resetPassword(username);
+    }
+
+    @PutMapping(value = "set-status")
+    public boolean resetPass(@RequestParam("username") String username,
+                             @RequestParam("status") boolean status) {
+        System.out.println("check vao duoc route danh-sach-tai-khoan");
+        return taiKhoanService.setStatusTK(username,status);
+    }
+
+    @GetMapping(value = "get-ctdt")
+    public ResponseEntity<List<Map<String,Object>>> getCTDT(@RequestParam("ma-lop") String maLop,
+                                                            @RequestParam("nien-khoa")String nienKhoa) {
+
+        return ResponseEntity.ok( chuongTrinhDaoTaoService.findCTDT(maLop, nienKhoa));
     }
 }
