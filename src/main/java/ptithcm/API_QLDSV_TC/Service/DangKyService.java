@@ -1,6 +1,7 @@
 package ptithcm.API_QLDSV_TC.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,24 +31,9 @@ public class DangKyService {
         }
     }
     public String boDangKy(String maSV, Integer maLTC){
-        try{
-            DangKyId dangKyId=new DangKyId();
-            dangKyId.setMaltc(maLTC);
-            dangKyId.setMasv(maSV);
-            DangKy dangKy = new DangKy();
-            dangKy.setId(dangKyId);
-            dangKyRepository.delete(dangKy);
-            return "1";
-        }
-        catch(Exception e){
-            System.out.println("Lỗi: "+ e);
-            return "Lỗi: "+ e;
-        }
+        Map<String, ?>result=dangKyRepository.huyDangKy(maSV, maLTC);
+        return (String)result.get("MESSAGE");
+        
     }
-    // public List<DangKy> getDS(){
-    //     return dangKyRepository.findAll();
-    // }
-    // public List<DangKy> getDS2(String maSV){
-    //     return dangKyRepository.findById_Masv(maSV);
-    // }
+
 }

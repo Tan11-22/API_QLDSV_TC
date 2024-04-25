@@ -52,6 +52,7 @@ public class GiangVien {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "MAGV")
+    @MapsId
     private TaiKhoan taiKhoan;
 
 
