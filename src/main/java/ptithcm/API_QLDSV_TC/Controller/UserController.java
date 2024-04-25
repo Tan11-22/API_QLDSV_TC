@@ -40,8 +40,11 @@ public class UserController {
     ChuongTrinhDaoTaoService chuongTrinhDaoTaoService;
 
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
-    public ResponseEntity<JWTAuthResponse> authenticate(@RequestParam("username") String username,
+    public ResponseEntity<?> authenticate(@RequestParam("username") String username,
                                                         @RequestParam("password") String password){
+        if(taiKhoanService.checkStatus(username)){
+            return ResponseEntity.badRequest().body("User is not active");
+        }
         LoginDTO loginDTO = new LoginDTO(username, password);
 
 
@@ -144,4 +147,6 @@ public class UserController {
 
         return ResponseEntity.ok( chuongTrinhDaoTaoService.findCTDT(maLop, nienKhoa));
     }
+
+
 }

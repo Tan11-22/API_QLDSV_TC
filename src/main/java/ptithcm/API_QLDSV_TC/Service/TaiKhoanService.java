@@ -44,6 +44,11 @@ public class TaiKhoanService {
         }
         return taiKhoanDTO;
     }
+    public boolean checkStatus(String username) {
+        Optional<TaiKhoan> optionalTaiKhoan = taiKhoanRepository.findById(username);
+        return !optionalTaiKhoan.get().getTrangThai();
+    }
+
 
     public boolean saveNewLogin(TaiKhoanDTO taiKhoanDTO) {
         try {
