@@ -69,6 +69,8 @@ public class SpringSecurityConfig {
                     authorize.requestMatchers("/api/lop-tin-chi/dang-ky").hasAuthority("SINHVIEN");
                     authorize.requestMatchers("/api/lop-tin-chi/bo-dang-ky").hasAuthority("SINHVIEN");
                     authorize.requestMatchers("/api/sinh-vien/tim-sinh-vien").hasAuthority("SINHVIEN");
+                    authorize.requestMatchers("/api/auth/danh-sach-lop").hasAuthority("SINHVIEN");
+                    authorize.requestMatchers("/api/auth/get-ctdt").hasAuthority("SINHVIEN");
 //                    authorize.requestMatchers("/api/auth/check-role-gv").hasAuthority("GIANGVIEN");
                     authorize.requestMatchers("/api/sinh-vien/tim-sinh-vien").hasAuthority("GIANGVIEN");
                     authorize.requestMatchers("/api/sinh-vien/danh-sach-lop").hasAuthority("GIANGVIEN");

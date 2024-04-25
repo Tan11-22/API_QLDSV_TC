@@ -142,10 +142,11 @@ public class UserController {
     }
 
     @GetMapping(value = "get-ctdt")
-    public ResponseEntity<List<Map<String,Object>>> getCTDT(@RequestParam("ma-lop") String maLop,
+    public ResponseEntity<?> getCTDT(@RequestParam("ma-lop") String maLop,
                                                             @RequestParam("nien-khoa")String nienKhoa) {
-
-        return ResponseEntity.ok( chuongTrinhDaoTaoService.findCTDT(maLop, nienKhoa));
+        if(chuongTrinhDaoTaoService.findCTDT(maLop, nienKhoa) != null){
+        return ResponseEntity.ok( chuongTrinhDaoTaoService.findCTDT(maLop, nienKhoa));}
+        else return ResponseEntity.badRequest().body("Không tìm thấy chương trình đào tạo!");
     }
 
 
