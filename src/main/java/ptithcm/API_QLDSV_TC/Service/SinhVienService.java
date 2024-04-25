@@ -2,16 +2,14 @@ package ptithcm.API_QLDSV_TC.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ptithcm.API_QLDSV_TC.DTO.SinhVienData;
 import ptithcm.API_QLDSV_TC.Model.SinhVien;
 import ptithcm.API_QLDSV_TC.Repository.SinhVienRepository;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+
+import java.util.*;
+
 import org.springframework.dao.DataAccessException;
-import org.springframework.stereotype.Service;
 import ptithcm.API_QLDSV_TC.DTO.SinhVienDTO;
-import ptithcm.API_QLDSV_TC.Model.SinhVien;
-import ptithcm.API_QLDSV_TC.Repository.SinhVienRepository;
 
 import java.util.List;
 
@@ -25,6 +23,11 @@ public class SinhVienService {
     // Lay danh sach sinh vien
     public List<SinhVien> findAll() {
         return sinhVienRepository.findAll();
+    }
+
+
+    public Map<String, Object> thongtinSV(String masv){
+        return sinhVienRepository.thongtinSV(masv);
     }
 
     // Lay thong tin sinh vien
