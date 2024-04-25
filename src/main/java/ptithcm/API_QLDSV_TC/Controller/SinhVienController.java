@@ -144,7 +144,6 @@ public class SinhVienController {
     }
 
     @RequestMapping(value = "/quen-mat-khau", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?>  quenMatKhau(@Validated  @RequestParam("email") String email,
                                           @RequestParam("password") String password)
     {
@@ -155,7 +154,6 @@ public class SinhVienController {
         }
     }
     @RequestMapping(value = "/doi-mat-khau", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?>  doiMatKhau(@Validated  @RequestParam("username") String username,
                                          @RequestParam("password") String password)
     {
