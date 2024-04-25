@@ -17,6 +17,9 @@ public class CTDongHocPhiService {
             return "Lỗi: Không nhận được dữ liệu";
         }
         try{
+            if(ctDongHocPhiRepository.existsById(ctDongHocPhi.getId())){
+                ctDongHocPhi.setSotiendong(ctDongHocPhi.getSotiendong()+ctDongHocPhiRepository.findByid(ctDongHocPhi.getId()).getSotiendong());
+            }
             ctDongHocPhiRepository.save(ctDongHocPhi);
             return "1";
         }

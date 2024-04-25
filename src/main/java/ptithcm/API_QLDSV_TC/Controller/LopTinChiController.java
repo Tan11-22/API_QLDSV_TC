@@ -171,12 +171,11 @@ public class LopTinChiController {
         return ResponseEntity.ok(response);
     }
     @RequestMapping(value = "/bo-dang-ky", method = RequestMethod.GET)
-    public ResponseEntity<Map<String,String>> boDangKy(
-        @RequestParam("maSV") String maSV,
-        @RequestParam("maLTC") Integer maLTC
-    ){
+    public ResponseEntity<Map<String, ?>> boDangKy(
+            @RequestParam("maSV") String maSV,
+            @RequestParam("maLTC") Integer maLTC)
+        {
         Map<String,String> response = new HashMap<>();
-        
         String ketQua = dangKyService.boDangKy(maSV, maLTC);
         if (ketQua.equals("1")){
             response.put("status","1");
@@ -186,9 +185,26 @@ public class LopTinChiController {
             response.put("status","0");
             response.put("message", ketQua);
         }
-        
         return ResponseEntity.ok(response);
     }
+    // public ResponseEntity<Map<String,String>> boDangKy(
+    //     @RequestParam("maSV") String maSV,
+    //     @RequestParam("maLTC") Integer maLTC
+    // ){
+    //     Map<String,String> response = new HashMap<>();
+        
+    //     String ketQua = dangKyService.boDangKy(maSV, maLTC);
+    //     if (ketQua.equals("1")){
+    //         response.put("status","1");
+    //         response.put("message","sucessful");
+    //     }
+    //     else{
+    //         response.put("status","0");
+    //         response.put("message", ketQua);
+    //     }
+        
+    //     return ResponseEntity.ok(response);
+    // }
     
     
     @RequestMapping(value = "", method = RequestMethod.GET)
