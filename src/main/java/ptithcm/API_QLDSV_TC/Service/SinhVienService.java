@@ -1,6 +1,8 @@
 package ptithcm.API_QLDSV_TC.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ptithcm.API_QLDSV_TC.DTO.SinhVienData;
 import ptithcm.API_QLDSV_TC.Model.SinhVien;
@@ -131,7 +133,9 @@ public class SinhVienService {
     public int quenMatKhau(String email,String password) {
 
         try {
-            sinhVienRepository.quenMatKhau(email,password);
+            PasswordEncoder encoder = new BCryptPasswordEncoder();
+            String newPass = encoder.encode(password);
+            sinhVienRepository.quenMatKhau(email,newPass);
         } catch (DataAccessException dataAccessException) {
             System.out.println(dataAccessException.getMessage());
             return 0;

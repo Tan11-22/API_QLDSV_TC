@@ -23,4 +23,5 @@ public class HeController {
         List<He> danhSachHeDaoTao = heService.danhSachHeDaoTao();
         return new ResponseEntity<>(danhSachHeDaoTao, HttpStatus.OK);
     }
+    
 }
