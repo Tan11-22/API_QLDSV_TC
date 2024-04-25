@@ -42,6 +42,45 @@ public class GiangVien {
     @Column(name = "HINHANH")
     private String hinhanh;
 
+
+    @Column(name = "SDT")
+    private String sdt;
+
+
+    @Column(name = "EMAIL")
+    private String email;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "MAGV")
+    @MapsId
+    private TaiKhoan taiKhoan;
+
+
+    public String getSdt() {
+        return sdt;
+    }
+
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public TaiKhoan getTaiKhoan() {
+        return taiKhoan;
+    }
+
+    public void setTaiKhoan(TaiKhoan taiKhoan) {
+        this.taiKhoan = taiKhoan;
+    }
+
+
     public String getMagv() {
         return magv;
     }

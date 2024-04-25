@@ -3,7 +3,9 @@ package ptithcm.API_QLDSV_TC.Model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Nationalized;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "SINHVIEN")
@@ -29,7 +31,7 @@ public class SinhVien {
     private String diachi;
 
     @Column(name = "NGAYSINH")
-    private LocalDate ngaysinh;
+    private String ngaysinh;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "MALOP", nullable = false)
@@ -38,12 +40,62 @@ public class SinhVien {
     @Column(name = "DANGHIHOC", nullable = false)
     private Boolean danghihoc = false;
 
-    @Nationalized
-    @Column(name = "PASSWORD", length = 40)
-    private String password;
+
+    @Column(name = "SDT")
+    private String sdt;
 
     @Column(name = "HINHANH")
     private String hinhanh;
+    @Column(name = "EMAIL")
+    private String email;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "MASV")
+    @MapsId
+    private TaiKhoan taiKhoan;
+
+    public SinhVien() {
+    }
+
+    public SinhVien(String masv, String ho, String ten, Boolean phai, String diachi, String ngaysinh, Lop malop, Boolean danghihoc, String sdt, String hinhanh, String email) {
+        this.masv = masv;
+        this.ho = ho;
+        this.ten = ten;
+        this.phai = phai;
+        this.diachi = diachi;
+        this.ngaysinh = ngaysinh;
+        this.malop = malop;
+        this.danghihoc = danghihoc;
+        this.sdt = sdt;
+        this.hinhanh = hinhanh;
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public TaiKhoan getTaiKhoan() {
+        return taiKhoan;
+    }
+
+    public void setTaiKhoan(TaiKhoan taiKhoan) {
+        this.taiKhoan = taiKhoan;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+    public String getSdt() {
+        return sdt;
+    }
+
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
+    }
+
 
     public String getMasv() {
         return masv;
@@ -85,11 +137,11 @@ public class SinhVien {
         this.diachi = diachi;
     }
 
-    public LocalDate getNgaysinh() {
+    public String getNgaysinh() {
         return ngaysinh;
     }
 
-    public void setNgaysinh(LocalDate ngaysinh) {
+    public void setNgaysinh(String ngaysinh) {
         this.ngaysinh = ngaysinh;
     }
 
@@ -105,24 +157,9 @@ public class SinhVien {
         return danghihoc;
     }
 
-    public void setDanghihoc(Boolean danghihoc) {
-        this.danghihoc = danghihoc;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getHinhanh() {
         return hinhanh;
     }
 
-    public void setHinhanh(String hinhanh) {
-        this.hinhanh = hinhanh;
-    }
 
 }

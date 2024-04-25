@@ -1,5 +1,6 @@
 package ptithcm.API_QLDSV_TC.DTO;
 
+
 import org.hibernate.annotations.Nationalized;
 
 public class LopDTO {

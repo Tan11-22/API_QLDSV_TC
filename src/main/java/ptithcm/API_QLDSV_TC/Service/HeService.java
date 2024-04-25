@@ -3,6 +3,8 @@ package ptithcm.API_QLDSV_TC.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+
+import ptithcm.API_QLDSV_TC.DTO.HeDTO;
 import ptithcm.API_QLDSV_TC.Model.He;
 import ptithcm.API_QLDSV_TC.Repository.HeRepository;
 

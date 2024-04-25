@@ -1,6 +1,7 @@
 package ptithcm.API_QLDSV_TC.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import org.springframework.data.jpa.repository.Query;
 import ptithcm.API_QLDSV_TC.Model.Lop;
 
@@ -17,4 +18,9 @@ public interface LopRepository extends JpaRepository<Lop, String> {
     public int updateLop(String malop, String tenlop, String khoahoc, int trangthai, int he);
 
     public void deleteBymalop(String malop);
+
+    @Query(value = "{call SP_FIND_LIST_MA_LOP()}", nativeQuery = true)
+    List<Map<String,Object>> findDanhSachLop();
+
+
 }
