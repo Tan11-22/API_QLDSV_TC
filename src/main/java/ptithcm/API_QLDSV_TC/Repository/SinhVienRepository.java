@@ -1,6 +1,7 @@
 package ptithcm.API_QLDSV_TC.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
@@ -70,4 +71,5 @@ public interface SinhVienRepository extends JpaRepository<SinhVien, String> {
     );
     @Query(value = "EXEC SP_TIM_SINH_VIEN :masv", nativeQuery = true)
     SinhVienDTO timSinhVien(@Param("masv") String masv);
+
 }

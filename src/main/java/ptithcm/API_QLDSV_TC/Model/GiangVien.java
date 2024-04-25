@@ -42,6 +42,7 @@ public class GiangVien {
     @Column(name = "HINHANH")
     private String hinhanh;
 
+
     @Column(name = "SDT")
     private String sdt;
 
@@ -77,6 +78,7 @@ public class GiangVien {
     public void setTaiKhoan(TaiKhoan taiKhoan) {
         this.taiKhoan = taiKhoan;
     }
+
 
     public String getMagv() {
         return magv;

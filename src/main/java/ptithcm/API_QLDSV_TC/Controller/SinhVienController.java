@@ -9,9 +9,12 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import ptithcm.API_QLDSV_TC.Model.SinhVien;
+
 import ptithcm.API_QLDSV_TC.DTO.SinhVienDTO;
 import ptithcm.API_QLDSV_TC.Model.Lop;
-import ptithcm.API_QLDSV_TC.Model.SinhVien;
+
 import ptithcm.API_QLDSV_TC.Service.LopService;
 import ptithcm.API_QLDSV_TC.Service.SinhVienService;
 
@@ -23,6 +26,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+
+
 
 @RestController
 @RequestMapping("/api/sinh-vien")

@@ -1,5 +1,9 @@
 package ptithcm.API_QLDSV_TC.DTO;
 
+
+import java.time.LocalDate;
+
+
 public class SinhVienDTO {
     private String masv;
     private String ho;
@@ -119,4 +123,5 @@ public class SinhVienDTO {
     public void setSdt(String sdt) {
         this.sdt = sdt;
     }
+
 }

@@ -20,6 +20,7 @@ public class TaiKhoan {
     @JoinColumn(name = "IDQUYEN")
     private Quyen quyen;
 
+
     @OneToOne(mappedBy = "taiKhoan")
     private SinhVien sinhVien;
 

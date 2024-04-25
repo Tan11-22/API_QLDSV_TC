@@ -1,6 +1,8 @@
 package ptithcm.API_QLDSV_TC.Controller;
 
+
 import org.apache.tomcat.util.codec.binary.Base64;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -141,4 +143,5 @@ public class GiangVienController {
         // Trả về chuỗi base64
         return base64ImageString;
     }
+
 }
