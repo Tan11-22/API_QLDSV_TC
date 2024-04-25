@@ -23,7 +23,7 @@ import java.nio.file.Paths;
 import java.util.*;
 
 @RestController
-@RequestMapping("/sinhvien")
+@RequestMapping("/api/sinhvien")
 public class SinhVienController1 {
     private static final String FILE_DIRECTORY = "D:\\PTUDDD\\QLSVHTC\\src\\main\\java\\ptithcm\\API_QLDSV_TC\\Image\\";
     @Autowired
@@ -87,6 +87,6 @@ public class SinhVienController1 {
         }
 //        Resource img = new InputStreamResource(Files.newInputStream(imgPath));
 //        sinhVienData.setImgResource(img);
-        return new ResponseEntity<>(sinhVienData, HttpStatus.OK);
+        return ResponseEntity.ok(sinhVienData);
     }
 }
