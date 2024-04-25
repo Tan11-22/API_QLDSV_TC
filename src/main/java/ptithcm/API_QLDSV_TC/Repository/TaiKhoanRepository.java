@@ -37,5 +37,14 @@ public interface TaiKhoanRepository extends JpaRepository<TaiKhoan,String> {
     );
 
     @Query(value = "{call SP_FIND_LIST_TK_GV()}", nativeQuery = true)
-    List<Map<String,Object>> findDanhSachTK();
+    List<Map<String,Object>> findDanhSachTKGV();
+
+    @Query(value = "{call SP_FIND_LIST_TK_SV()}", nativeQuery = true)
+    List<Map<String,Object>> findDanhSachTKSV();
+
+    @Procedure (procedureName = "SP_DISABLE_TAI_KHOAN")
+    void setStatusTK(
+            @Param("username") String username,
+            @Param("trangthai") boolean trangthai
+    );
 }
