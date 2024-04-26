@@ -46,6 +46,9 @@ public class TaiKhoanService {
     }
     public boolean checkStatus(String username) {
         Optional<TaiKhoan> optionalTaiKhoan = taiKhoanRepository.findById(username);
+        if (optionalTaiKhoan.isEmpty()) {
+            return false;
+        }
         return !optionalTaiKhoan.get().getTrangThai();
     }
 
