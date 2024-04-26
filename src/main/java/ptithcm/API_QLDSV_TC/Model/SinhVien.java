@@ -161,5 +161,11 @@ public class SinhVien {
         return hinhanh;
     }
 
+    public void setDanghihoc(Boolean danghihoc) {
+        this.danghihoc = danghihoc;
+    }
 
+    public void setHinhanh(String hinhanh) {
+        this.hinhanh = hinhanh;
+    }
 }

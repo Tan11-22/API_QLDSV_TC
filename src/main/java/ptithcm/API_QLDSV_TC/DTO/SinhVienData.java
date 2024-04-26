@@ -1,38 +1,41 @@
 package ptithcm.API_QLDSV_TC.DTO;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import org.springframework.core.io.Resource;
 import ptithcm.API_QLDSV_TC.Model.SinhVien;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 public class SinhVienData {
 
+    @JsonProperty("masv")
     private String MASV;
-
+    @JsonProperty("ho")
     private String HO;
-
+    @JsonProperty("ten")
     private String TEN;
-
+    @JsonProperty("phai")
     private String PHAI;
-
+    @JsonProperty("diachi")
     private String DIACHI;
-
+    @JsonProperty("ngaysinh")
     private String NGAYSINH;
-
+    @JsonProperty("email")
     private String EMAIL;
-
+    @JsonProperty("sdt")
     private String SDT;
-
+    @JsonProperty("lop")
     private String LOP;
-
+    @JsonProperty("khoa")
     private String KHOA;
 
-
-    private byte[] imgResource;
-
+    @JsonProperty("imgResource")
+    private String imgResource;
+    @JsonProperty("hinhanh")
     private String HINHANH;
 
     public SinhVienData() {
@@ -131,11 +134,11 @@ public class SinhVienData {
         this.KHOA = KHOA;
     }
 
-    public byte[] getImgResource() {
+    public String getImgResource() {
         return imgResource;
     }
 
-    public void setImgResource(byte[] imgResource) {
+    public void setImgResource(String imgResource) {
         this.imgResource = imgResource;
     }
 
@@ -145,5 +148,23 @@ public class SinhVienData {
 
     public void setHINHANH(String HINHANH) {
         this.HINHANH = HINHANH;
+    }
+
+    @Override
+    public String toString() {
+        return "SinhVienData{" +
+                "HO='" + HO + '\'' +
+                ", TEN='" + TEN + '\'' +
+                ", PHAI='" + PHAI + '\'' +
+                ", DIACHI='" + DIACHI + '\'' +
+                ", NGAYSINH='" + NGAYSINH + '\'' +
+                ", EMAIL='" + EMAIL + '\'' +
+                ", SDT='" + SDT + '\'' +
+                ", LOP='" + LOP + '\'' +
+                ", KHOA='" + KHOA + '\'' +
+                ", imgResource=" + imgResource +
+                ", HINHANH='" + HINHANH + '\'' +
+                ", MASV='" + MASV + '\'' +
+                '}';
     }
 }
