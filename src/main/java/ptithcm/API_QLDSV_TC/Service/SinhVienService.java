@@ -6,9 +6,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ptithcm.API_QLDSV_TC.Model.SinhVien;
 import ptithcm.API_QLDSV_TC.Repository.SinhVienRepository;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+
+import java.util.*;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import ptithcm.API_QLDSV_TC.DTO.SinhVienDTO;
@@ -54,7 +54,8 @@ public class SinhVienService {
 
 
     public int themSinhVienMoi(SinhVienDTO sinhVien, String password) {
-        System.out.println(sinhVien.toString());
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        String newPass = encoder.encode(password);
         try {
             sinhVienRepository.themSinhVienMoi(
                     sinhVien.getMasv(),
@@ -68,7 +69,7 @@ public class SinhVienService {
                     false,
                     sinhVien.getHinhanh(),
                     sinhVien.getMasv().trim()+"@student.ptithcm.edu.vn",
-                    password
+                    newPass
             );
         } catch (DataAccessException dataAccessException) {
             System.out.println(dataAccessException.getMessage());
@@ -127,22 +128,13 @@ public class SinhVienService {
         }
         return 1;
     }
-    public int quenMatKhau(String email,String password) {
+
+    public int doiMatKhau(String username,String password) {
 
         try {
             PasswordEncoder encoder = new BCryptPasswordEncoder();
             String newPass = encoder.encode(password);
-            sinhVienRepository.quenMatKhau(email,newPass);
-        } catch (DataAccessException dataAccessException) {
-            System.out.println(dataAccessException.getMessage());
-            return 0;
-        }
-        return 1;
-    }
-    public int doiMatKhau(String username,String password) {
-
-        try {
-            sinhVienRepository.doiMatKhau(username,password);
+            sinhVienRepository.doiMatKhau(username,newPass);
         } catch (DataAccessException dataAccessException) {
             System.out.println(dataAccessException.getMessage());
             return 0;
@@ -152,5 +144,8 @@ public class SinhVienService {
     public SinhVienDTO timSinhVen(String masv)
     {
         return sinhVienRepository.timSinhVien(masv);
+    }
+    public Map<String, Object> taiKhoanByEmail(String Email) {
+        return sinhVienRepository.taiKhoanByEMail(Email);
     }
 }

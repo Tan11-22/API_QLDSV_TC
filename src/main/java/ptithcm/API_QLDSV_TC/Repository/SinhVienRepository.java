@@ -9,6 +9,7 @@ import ptithcm.API_QLDSV_TC.DTO.SinhVienDTO;
 import ptithcm.API_QLDSV_TC.Model.SinhVien;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SinhVienRepository extends JpaRepository<SinhVien, String> {
     SinhVien findBymasv(String maSV);
@@ -58,12 +59,7 @@ public interface SinhVienRepository extends JpaRepository<SinhVien, String> {
 
     );
 
-    @Procedure (procedureName = "SP_QUEN_MAT_KHAU")
-    void quenMatKhau(
-            @Param("email") String email,
-            @Param("password") String password
 
-    );
     @Procedure (procedureName = "SP_DOI_MAT_KHAU")
     void doiMatKhau(
             @Param("username") String username,
@@ -71,5 +67,8 @@ public interface SinhVienRepository extends JpaRepository<SinhVien, String> {
     );
     @Query(value = "EXEC SP_TIM_SINH_VIEN :masv", nativeQuery = true)
     SinhVienDTO timSinhVien(@Param("masv") String masv);
+
+    @Query(value = "EXEC SP_TAI_KHOAN_BY_EMAIL :Email", nativeQuery = true)
+    public Map<String, Object> taiKhoanByEMail(@Param("Email") String Email);
 
 }

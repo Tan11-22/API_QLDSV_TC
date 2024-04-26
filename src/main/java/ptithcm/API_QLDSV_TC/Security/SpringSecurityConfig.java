@@ -56,7 +56,8 @@ public class SpringSecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authorize) -> {
                     authorize.requestMatchers("/api/auth/user/**").permitAll();
-                    authorize.requestMatchers("/api/sinh-vien/quen-mat-khau").permitAll();
+                    authorize.requestMatchers("/api/sinh-vien/doi-mat-khau").permitAll();
+                    authorize.requestMatchers("/api/sinh-vien/tai-khoan-by-email").permitAll();
                     authorize.requestMatchers("/api/auth/check-role").hasAuthority("SINHVIEN");
                     authorize.requestMatchers("/api/auth/check-role-gv").hasAuthority("GIANGVIEN");
                     authorize.anyRequest().authenticated();
