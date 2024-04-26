@@ -1,20 +1,19 @@
 package ptithcm.API_QLDSV_TC.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 import ptithcm.API_QLDSV_TC.DTO.SinhVienDTO;
-import ptithcm.API_QLDSV_TC.DTO.SinhVienData;
+import ptithcm.API_QLDSV_TC.Model.Lop;
 import ptithcm.API_QLDSV_TC.Model.SinhVien;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public interface SinhVienRepository extends JpaRepository<SinhVien, String> {
     SinhVien findBymasv(String maSV);
+    List<SinhVien> findBymalop(Lop maLop);
 
     List<SinhVien> findAll();
 
@@ -71,13 +70,6 @@ public interface SinhVienRepository extends JpaRepository<SinhVien, String> {
 
     );
 
-    @Procedure(procedureName = "SP_QUEN_MAT_KHAU")
-    void quenMatKhau(
-            @Param("email") String email,
-            @Param("password") String password
-
-    );
-
     @Procedure(procedureName = "SP_DOI_MAT_KHAU")
     void doiMatKhau(
             @Param("username") String username,
@@ -86,5 +78,8 @@ public interface SinhVienRepository extends JpaRepository<SinhVien, String> {
 
     @Query(value = "EXEC SP_TIM_SINH_VIEN :masv", nativeQuery = true)
     SinhVienDTO timSinhVien(@Param("masv") String masv);
+
+    @Query(value = "EXEC SP_TAI_KHOAN_BY_EMAIL :Email", nativeQuery = true)
+    public Map<String, Object> taiKhoanByEMail(@Param("Email") String Email);
 
 }

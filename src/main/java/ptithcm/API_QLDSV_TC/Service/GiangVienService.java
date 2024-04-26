@@ -2,6 +2,8 @@ package ptithcm.API_QLDSV_TC.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ptithcm.API_QLDSV_TC.DTO.GiangVienDTO;
 import ptithcm.API_QLDSV_TC.DTO.SinhVienDTO;
@@ -56,7 +58,8 @@ public class GiangVienService {
 
 
     public int themGiangVienMoi(GiangVienDTO giangVien, String password) {
-
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        String newPass = encoder.encode(password);
         try {
             giangVienRepository.themGiangVienMoi(
                     giangVien.getMagv(),
@@ -69,8 +72,7 @@ public class GiangVienService {
                     giangVien.getHinhanh(),
                     giangVien.getMagv().trim()+"@student.ptithcm.edu.vn",
                     giangVien.getMakhoa(),
-                    password
-            );
+                    newPass            );
         } catch (DataAccessException dataAccessException) {
             System.out.println(dataAccessException.getMessage());
             return 0;

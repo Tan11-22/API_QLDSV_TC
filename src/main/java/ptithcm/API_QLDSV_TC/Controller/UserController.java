@@ -40,8 +40,11 @@ public class UserController {
     ChuongTrinhDaoTaoService chuongTrinhDaoTaoService;
 
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
-    public ResponseEntity<JWTAuthResponse> authenticate(@RequestParam("username") String username,
+    public ResponseEntity<?> authenticate(@RequestParam("username") String username,
                                                         @RequestParam("password") String password){
+        if(taiKhoanService.checkStatus(username)){
+            return ResponseEntity.badRequest().body("User is not active");
+        }
         LoginDTO loginDTO = new LoginDTO(username, password);
 
 
@@ -139,9 +142,12 @@ public class UserController {
     }
 
     @GetMapping(value = "get-ctdt")
-    public ResponseEntity<List<Map<String,Object>>> getCTDT(@RequestParam("ma-lop") String maLop,
+    public ResponseEntity<?> getCTDT(@RequestParam("ma-lop") String maLop,
                                                             @RequestParam("nien-khoa")String nienKhoa) {
-
-        return ResponseEntity.ok( chuongTrinhDaoTaoService.findCTDT(maLop, nienKhoa));
+        if(chuongTrinhDaoTaoService.findCTDT(maLop, nienKhoa) != null){
+        return ResponseEntity.ok( chuongTrinhDaoTaoService.findCTDT(maLop, nienKhoa));}
+        else return ResponseEntity.badRequest().body("Không tìm thấy chương trình đào tạo!");
     }
+
+
 }
