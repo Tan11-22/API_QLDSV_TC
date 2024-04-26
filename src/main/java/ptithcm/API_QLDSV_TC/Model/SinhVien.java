@@ -3,6 +3,7 @@ package ptithcm.API_QLDSV_TC.Model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Nationalized;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -47,8 +48,10 @@ public class SinhVien {
     private String hinhanh;
     @Column(name = "EMAIL")
     private String email;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "MASV")
+    @MapsId
     private TaiKhoan taiKhoan;
 
     public SinhVien() {

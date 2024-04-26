@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import ptithcm.API_QLDSV_TC.DTO.LopDTO;
 import ptithcm.API_QLDSV_TC.Model.Lop;
 import ptithcm.API_QLDSV_TC.Repository.LopRepository;
+import ptithcm.API_QLDSV_TC.Repository.SinhVienRepository;
 
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,9 @@ public class LopService  {
         return lopRepository.findBymalop(maLop);
     }
 
+    @Autowired
+    SinhVienRepository sinhVienRepository;
+
     public List<Map<String, ?>> danhSachLopCuaKhoa(String maGv, int trangThai){
         return lopRepository.danhSachLopCuaKhoa(maGv, trangThai);
     }
@@ -54,7 +58,8 @@ public class LopService  {
 
     @Transactional
     public int xoaLop(String maLop){
-        if(lopRepository.findBymalop(maLop) != null){
+        Lop lop = lopRepository.findBymalop(maLop);
+        if(lop != null && sinhVienRepository.findBymalop(lop) == null){
             lopRepository.deleteBymalop(maLop);
             return 1;
         } else {
@@ -66,6 +71,7 @@ public class LopService  {
         return lopRepository.findAll();
     }
 
+
     public Optional<Lop> timLopTheoMa(String maLop) {
         return lopRepository.findById(maLop);
     }
@@ -76,3 +82,4 @@ public class LopService  {
 
 
 }
+

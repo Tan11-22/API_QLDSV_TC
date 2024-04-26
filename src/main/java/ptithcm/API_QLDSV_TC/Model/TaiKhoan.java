@@ -1,6 +1,7 @@
 package ptithcm.API_QLDSV_TC.Model;
 
 import jakarta.persistence.*;
+import org.springframework.data.util.Lazy;
 
 @Entity
 @Table(name="TAIKHOAN")
@@ -16,15 +17,17 @@ public class TaiKhoan {
     @Column(name = "TRANGTHAI")
     private Boolean trangThai;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "IDQUYEN")
     private Quyen quyen;
 
 
-    @OneToOne(mappedBy = "taiKhoan")
+    @OneToOne(mappedBy = "taiKhoan",fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn
     private SinhVien sinhVien;
 
     @OneToOne(mappedBy = "taiKhoan")
+    @PrimaryKeyJoinColumn
     private GiangVien giangVien;
 
     public TaiKhoan() {

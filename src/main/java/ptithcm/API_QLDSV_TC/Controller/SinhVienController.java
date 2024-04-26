@@ -48,9 +48,9 @@ public class SinhVienController {
     public ResponseEntity<SinhVien> thongTinCaNhan(@RequestParam("ma-sv") String maSV){
         SinhVien sv = sinhVienService.sinhVienTheoMa(maSV);
         if(sv != null){
-            return new ResponseEntity<>(sv, HttpStatus.OK);
+            return ResponseEntity.ok(sv);
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.badRequest().build();
     }
     @GetMapping("/tim-sinh-vien")
     public ResponseEntity<SinhVienDTO> timSinhVien(@RequestParam("ma-sv") String masv) {

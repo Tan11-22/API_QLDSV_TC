@@ -1,6 +1,7 @@
 package ptithcm.API_QLDSV_TC.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import ptithcm.API_QLDSV_TC.DTO.HeDTO;
@@ -23,42 +24,35 @@ public class HeService {
         return heRepository.findByid(id);
     }
 
-    // public int themHe(HeDTO heDTO) {
-    //     try {
-    //         heRepository.themHe(
-    //             heDTO.getId(),heDTO.getTenHe()
-    //         );
-    //     } catch (DataAccessException dataAccessException) {
-    //         System.out.println(dataAccessException.getMessage());
-    //         return 0;
-    //     }
-    //     return 1;
-    // }
+    public int capNhathe(He he){
+        try{
+            heRepository.save(he);
+            return 1;
+        }catch (DataIntegrityViolationException e){
+            return 0;
+        }
+    }
 
-    // public int updateMonHoc(MonHocDTO monHocDTO) {
-    //     System.out.println(monHocDTO.toString());
-    //     try {
-    //         monHocRepository.updateMonHoc(
-    //                 monHocDTO.getMamh(),
-    //                 monHocDTO.getTenmh(),
-    //                 monHocDTO.getSotietLt(),
-    //                 monHocDTO.getSotietTh(),
-    //                 monHocDTO.getSotinchi()
-    //         );
-    //     } catch (DataAccessException dataAccessException) {
-    //         System.out.println(dataAccessException.getMessage());
-    //         return 0;
-    //     }
-    //     return 1;
-    // }
-    // public int xoaMonHoc(String mamh) {
+    public int themMoiHe(He he){
+        try{
+            heRepository.save(he);
+            return 1;
+        }catch (DataIntegrityViolationException e){
+            return 0;
+        }
+    }
 
-    //     try {
-    //         monHocRepository.xoaMonHoc(mamh);
-    //     } catch (DataAccessException dataAccessException) {
-    //         System.out.println(dataAccessException.getMessage());
-    //         return 0;
-    //     }
-    //     return 1;
-    // }
+    public int xoaHe(int id){
+        He he = heRepository.findByid(id);
+        try{
+            heRepository.delete(he);
+            return 1;
+        } catch (DataIntegrityViolationException e){
+            return 0;
+        }
+    }
+
+    public He heTheoTen(String tenHe){
+        return heRepository.findBytenHe(tenHe);
+    }
 }

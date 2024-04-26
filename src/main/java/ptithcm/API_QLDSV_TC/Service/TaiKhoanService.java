@@ -3,6 +3,8 @@ package ptithcm.API_QLDSV_TC.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ptithcm.API_QLDSV_TC.DTO.TaiKhoanDTO;
 import ptithcm.API_QLDSV_TC.Model.TaiKhoan;
@@ -42,6 +44,11 @@ public class TaiKhoanService {
         }
         return taiKhoanDTO;
     }
+    public boolean checkStatus(String username) {
+        Optional<TaiKhoan> optionalTaiKhoan = taiKhoanRepository.findById(username);
+        return !optionalTaiKhoan.get().getTrangThai();
+    }
+
 
     public boolean saveNewLogin(TaiKhoanDTO taiKhoanDTO) {
         try {
@@ -84,7 +91,23 @@ public class TaiKhoanService {
         }
     }
 
-    public List<Map<String,Object>> findDanhSachTaiKhoan() {
-        return taiKhoanRepository.findDanhSachTK();
+    public List<Map<String,Object>> findDanhSachTaiKhoan(int id) {
+        if (id ==1){
+            return taiKhoanRepository.findDanhSachTKSV();
+        }else {
+            return taiKhoanRepository.findDanhSachTKGV();
+        }
+    }
+
+    public boolean resetPassword(String username) {
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        String encodePass = encoder.encode("123456");
+        sinhVienRepository.doiMatKhau(username,encodePass);
+        return true;
+    }
+
+    public boolean setStatusTK(String username, boolean trangThai) {
+        taiKhoanRepository.setStatusTK(username,trangThai);
+        return true;
     }
 }

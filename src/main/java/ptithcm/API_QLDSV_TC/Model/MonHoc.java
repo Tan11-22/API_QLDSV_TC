@@ -1,5 +1,6 @@
 package ptithcm.API_QLDSV_TC.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -12,19 +13,24 @@ public class MonHoc {
     @Id
     @Nationalized
     @Column(name = "MAMH", nullable = false, length = 10)
+    @JsonProperty("MAMH")
     private String mamh;
 
     @Nationalized
     @Column(name = "TENMH", nullable = false, length = 50)
+    @JsonProperty("TENMH")
     private String tenmh;
 
     @Column(name = "SOTIET_LT", nullable = false)
+    @JsonProperty("SOTIET_LT")
     private Integer sotietLt;
 
+    @JsonProperty("SOTIET_TH")
     @Column(name = "SOTIET_TH", nullable = false)
     private Integer sotietTh;
 
     @Column(name = "SOTINCHI")
+    @JsonProperty("SOTINCHI")
     private Integer sotinchi;
 
     public String getMamh() {

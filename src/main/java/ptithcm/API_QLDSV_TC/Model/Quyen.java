@@ -3,6 +3,7 @@ package ptithcm.API_QLDSV_TC.Model;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "QUYEN")
@@ -15,11 +16,12 @@ public class Quyen {
     @Column(name = "TENQUYEN")
     private String tenQuyen;
 
+    @OneToMany(mappedBy = "quyen",fetch = FetchType.LAZY)
+    private List<TaiKhoan> taiKhoan;
     public Quyen() {
     }
 
-    @OneToMany(mappedBy = "quyen")
-    private List<TaiKhoan> taiKhoan;
+
     public Quyen(Integer idQuyen, String tenQuyen) {
         this.idQuyen = idQuyen;
         this.tenQuyen = tenQuyen;

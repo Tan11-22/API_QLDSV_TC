@@ -21,14 +21,14 @@ public class XemDiemController {
     @RequestMapping(value = "/danh-sach-nam-hoc", method = RequestMethod.GET)
     public ResponseEntity<List<String>> danhSachNamHoc(@RequestParam("ma-sinh-vien") String maSV){
         List<String> danhSachNH = xemDiemService.danhSachNamHoc(maSV);
-        return new ResponseEntity<>(danhSachNH, HttpStatus.OK);
+        return ResponseEntity.ok(danhSachNH);
     }
 
     @RequestMapping(value = "danh-sach-hoc-ki", method = RequestMethod.GET)
     public ResponseEntity<List<String>> danhSachHocKi(@RequestParam("ma-sinh-vien") String maSV,
                                                       @RequestParam("nien-khoa") String nienKhoa){
         List<String> danhSachHK = xemDiemService.danhSachHocKi(maSV, nienKhoa);
-        return new ResponseEntity<>(danhSachHK, HttpStatus.OK);
+        return ResponseEntity.ok(danhSachHK);
     }
 
     @RequestMapping(value = "diem-hoc-ki", method = RequestMethod.GET)
@@ -36,6 +36,6 @@ public class XemDiemController {
                                                           @RequestParam("nien-khoa") String nienKhoa,
                                                           @RequestParam("hoc-ki") int hocKi){
         List<Map<String, ?>> diemHK = xemDiemService.danhSachDiemHocKi(maSV, nienKhoa, hocKi);
-        return new ResponseEntity<>(diemHK, HttpStatus.OK);
+        return ResponseEntity.ok(diemHK);
     }
 }
