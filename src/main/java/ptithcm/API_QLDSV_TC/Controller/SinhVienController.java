@@ -143,16 +143,6 @@ public class SinhVienController {
 
     }
 
-    @RequestMapping(value = "/quen-mat-khau", method = RequestMethod.POST)
-    public ResponseEntity<?>  quenMatKhau(@Validated  @RequestParam("email") String email,
-                                          @RequestParam("password") String password)
-    {
-        if(sinhVienService.quenMatKhau(email, password) == 0){
-            return ResponseEntity.badRequest().build();
-        } else {
-            return ResponseEntity.ok().build();
-        }
-    }
     @RequestMapping(value = "/doi-mat-khau", method = RequestMethod.POST)
     public ResponseEntity<?>  doiMatKhau(@Validated  @RequestParam("username") String username,
                                          @RequestParam("password") String password)
@@ -165,6 +155,15 @@ public class SinhVienController {
 
 
     }
+    @GetMapping("/tai-khoan-by-email")
+    public ResponseEntity<Map<String, Object>> taiKhoanByEmail(@Validated @RequestParam("Email") String Email) {
+        Map<String, Object> result = sinhVienService.taiKhoanByEmail(Email);
+        if (result.get("ID") == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return ResponseEntity.ok(result);
+    }
+
 
 
 
@@ -202,4 +201,5 @@ public class SinhVienController {
         // Trả về chuỗi base64
         return base64ImageString;
     }
+
 }

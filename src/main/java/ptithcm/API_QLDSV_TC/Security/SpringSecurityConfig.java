@@ -55,8 +55,14 @@ public class SpringSecurityConfig {
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authorize) -> {
+
+                    authorize.requestMatchers("/api/auth/user/**").permitAll();
+                    authorize.requestMatchers("/api/sinh-vien/doi-mat-khau").permitAll();
+                    authorize.requestMatchers("/api/sinh-vien/tai-khoan-by-email").permitAll();
+                    authorize.requestMatchers("/api/auth/check-role").hasAuthority("SINHVIEN");
+                    authorize.requestMatchers("/api/auth/check-role-gv").hasAuthority("GIANGVIEN");
                     authorize.requestMatchers("/api/auth/user/login").permitAll();
-                    authorize.requestMatchers("/api/sinh-vien/quen-mat-khau").permitAll();
+
 //                    authorize.requestMatchers("/api/auth/check-role").hasAuthority("SINHVIEN");
                     authorize.requestMatchers("/api/hoc-phi/hoc-ky").hasAuthority("SINHVIEN");
                     authorize.requestMatchers("/api/hoc-phi/sinh-vien").hasAuthority("SINHVIEN");
@@ -104,6 +110,7 @@ public class SpringSecurityConfig {
                     authorize.requestMatchers("/api/ds-nienkhoa").hasAuthority("GIANGVIEN");
                     authorize.requestMatchers("/api/").hasAuthority("GIANGVIEN");
                     authorize.requestMatchers("/api/").hasAuthority("GIANGVIEN");
+
                     authorize.anyRequest().authenticated();
                 });
         http.authenticationProvider(authenticationProvider());
