@@ -7,6 +7,7 @@ import ptithcm.API_QLDSV_TC.Model.Nganh;
 import ptithcm.API_QLDSV_TC.Repository.NganhRepository;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class NganhService {
@@ -48,4 +49,12 @@ public class NganhService {
     public Nganh nganhTheoTen(String ten){
         return nganhRepository.findByten(ten);
     }
+    public List<Map<String, Object>> findDanhSachNganh() {
+        return nganhRepository.findDanhSachNganh();
+    }
+
+    
+        public Nganh nganhTheoId(int id){
+            return nganhRepository.findByid(id);}
+
 }

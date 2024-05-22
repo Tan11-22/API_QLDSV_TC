@@ -1,5 +1,12 @@
 package ptithcm.API_QLDSV_TC.Service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+import ptithcm.API_QLDSV_TC.Model.Lop;
+import ptithcm.API_QLDSV_TC.Repository.LopRepository;
+
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,11 +17,25 @@ import ptithcm.API_QLDSV_TC.Repository.SinhVienRepository;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
 
 @Service
-public class LopService {
+public class LopService  {
+
     @Autowired
-    LopRepository lopRepository;
+    private LopRepository lopRepository;
+
+    public List<Lop> getAllLop(){
+        return lopRepository.findAll();
+    }
+
+    public Lop lopTheoMaLop(String maLop){
+        if(maLop==null){
+            return null;
+        }
+        return lopRepository.findBymalop(maLop);
+    }
 
     @Autowired
     SinhVienRepository sinhVienRepository;
@@ -45,4 +66,20 @@ public class LopService {
             return 0;
         }
     }
+
+    public List<Lop> findAll() {
+        return lopRepository.findAll();
+    }
+
+
+    public Optional<Lop> timLopTheoMa(String maLop) {
+        return lopRepository.findById(maLop);
+    }
+
+    public List<Map<String,Object>> findDanhSachLop() {
+        return lopRepository.findDanhSachLop();
+    }
+
+
 }
+
