@@ -24,10 +24,12 @@ public class SpringSecurityConfig {
     UserDetailsServiceImpl userDetailsService;
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
+
     @Bean
     public JwtAuthenticationFilter authenticationJwtTokenFilter() {
         return new JwtAuthenticationFilter();
     }
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -44,7 +46,7 @@ public class SpringSecurityConfig {
     }
 
     @Bean
-    public static PasswordEncoder passwordEncoder(){
+    public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -58,12 +60,13 @@ public class SpringSecurityConfig {
 
                     authorize.requestMatchers("/api/auth/user/**").permitAll();
                     authorize.requestMatchers("/api/sinh-vien/doi-mat-khau").permitAll();
+                    authorize.requestMatchers("/api/auth/get-img").permitAll();
                     authorize.requestMatchers("/api/sinh-vien/tai-khoan-by-email").permitAll();
                     authorize.requestMatchers("/api/auth/check-role").hasAuthority("SINHVIEN");
                     authorize.requestMatchers("/api/auth/check-role-gv").hasAuthority("GIANGVIEN");
                     authorize.requestMatchers("/api/auth/user/login").permitAll();
 
-//                    authorize.requestMatchers("/api/auth/check-role").hasAuthority("SINHVIEN");
+                    // authorize.requestMatchers("/api/auth/check-role").hasAuthority("SINHVIEN");
                     authorize.requestMatchers("/api/hoc-phi/hoc-ky").hasAuthority("SINHVIEN");
                     authorize.requestMatchers("/api/hoc-phi/sinh-vien").hasAuthority("SINHVIEN");
                     authorize.requestMatchers("/api/hoc-phi/ke-toan").hasAuthority("SINHVIEN");
@@ -74,11 +77,9 @@ public class SpringSecurityConfig {
                     authorize.requestMatchers("/api/lop-tin-chi/da-dang-ky").hasAuthority("SINHVIEN");
                     authorize.requestMatchers("/api/lop-tin-chi/dang-ky").hasAuthority("SINHVIEN");
                     authorize.requestMatchers("/api/lop-tin-chi/bo-dang-ky").hasAuthority("SINHVIEN");
-                    authorize.requestMatchers("/api/sinh-vien/tim-sinh-vien").hasAuthority("SINHVIEN");
                     authorize.requestMatchers("/api/auth/danh-sach-lop").hasAuthority("SINHVIEN");
                     authorize.requestMatchers("/api/auth/get-ctdt").hasAuthority("SINHVIEN");
-//                    authorize.requestMatchers("/api/auth/check-role-gv").hasAuthority("GIANGVIEN");
-                    authorize.requestMatchers("/api/sinh-vien/tim-sinh-vien").hasAuthority("GIANGVIEN");
+                    // authorize.requestMatchers("/api/auth/check-role-gv").hasAuthority("GIANGVIEN");
                     authorize.requestMatchers("/api/sinh-vien/danh-sach-lop").hasAuthority("GIANGVIEN");
                     authorize.requestMatchers("/api/sinh-vien/loc-ma-lop").hasAuthority("GIANGVIEN");
                     authorize.requestMatchers("/api/sinh-vien/danh-sach-sv-lop").hasAuthority("GIANGVIEN");
@@ -117,6 +118,5 @@ public class SpringSecurityConfig {
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
 
 }

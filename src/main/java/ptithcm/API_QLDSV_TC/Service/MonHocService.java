@@ -15,12 +15,12 @@ public class MonHocService {
     @Autowired
     private MonHocRepository monHocRepository;
 
-    public List<MonHoc> danhSachTatCaMonHoc(){
+    public List<MonHoc> danhSachTatCaMonHoc() {
         return monHocRepository.findAll();
     }
 
-    public int themMonHoc(MonHoc monHoc){
-        if(monHocRepository.findById(monHoc.getMamh()).isPresent()){
+    public int themMonHoc(MonHoc monHoc) {
+        if (monHocRepository.findById(monHoc.getMamh()).isPresent()) {
             return 0; // mon hoc da ton tai trong db
         } else {
             monHocRepository.save(monHoc);
@@ -28,14 +28,15 @@ public class MonHocService {
         }
     }
 
-    public MonHoc monHocTheoMa(String maMh){
+    public MonHoc monHocTheoMa(String maMh) {
         return monHocRepository.findBymamh(maMh);
     }
 
-    public Map<String, ?> soTCMonHoc(String tenMH){
+    public Map<String, ?> soTCMonHoc(String tenMH) {
         return monHocRepository.soTCMonHoc(tenMH);
     }
-    public int themMonHocMoi(MonHocDTO monHocDTO) {
+
+    public int themMonHocMoi(MonHoc monHocDTO) {
         System.out.println(monHocDTO.toString());
         try {
             monHocRepository.themMonHoc(
@@ -43,8 +44,7 @@ public class MonHocService {
                     monHocDTO.getTenmh(),
                     monHocDTO.getSotietLt(),
                     monHocDTO.getSotietTh(),
-                    monHocDTO.getSotinchi()
-            );
+                    monHocDTO.getSotinchi());
         } catch (DataAccessException dataAccessException) {
             System.out.println(dataAccessException.getMessage());
             return 0;
@@ -52,7 +52,7 @@ public class MonHocService {
         return 1;
     }
 
-    public int updateMonHoc(MonHocDTO monHocDTO) {
+    public int updateMonHoc(MonHoc monHocDTO) {
         System.out.println(monHocDTO.toString());
         try {
             monHocRepository.updateMonHoc(
@@ -60,14 +60,14 @@ public class MonHocService {
                     monHocDTO.getTenmh(),
                     monHocDTO.getSotietLt(),
                     monHocDTO.getSotietTh(),
-                    monHocDTO.getSotinchi()
-            );
+                    monHocDTO.getSotinchi());
         } catch (DataAccessException dataAccessException) {
             System.out.println(dataAccessException.getMessage());
             return 0;
         }
         return 1;
     }
+
     public int xoaMonHoc(String mamh) {
 
         try {

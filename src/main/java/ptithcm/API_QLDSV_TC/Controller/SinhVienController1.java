@@ -24,7 +24,7 @@ import java.util.Base64;
 @RestController
 @RequestMapping("/api/sinhvien")
 public class SinhVienController1 {
-    private static final String FILE_DIRECTORY = "D:\\PTUDDD\\QLSVHTC\\src\\main\\java\\ptithcm\\API_QLDSV_TC\\Image\\";
+    private static final String FILE_DIRECTORY = "C:\\Users\\Admin\\Desktop\\New folder\\API_QLDSV_TC\\src\\main\\java\\ptithcm\\API_QLDSV_TC\\Image\\";
     @Autowired
     SinhVienService sinhVienService;
 
@@ -118,7 +118,7 @@ public class SinhVienController1 {
         imageBytes = Base64.getDecoder().decode(base64Image);
 
         // Tạo đường dẫn đến thư mục và tên file
-        Path destinationFile = Paths.get("D:\\PTUDDD\\QLSVHTC\\src\\main\\java\\ptithcm\\API_QLDSV_TC\\Image\\", imageName);
+        Path destinationFile = Paths.get("C:\\Users\\Admin\\Desktop\\New folder\\API_QLDSV_TC\\src\\main\\java\\ptithcm\\API_QLDSV_TC\\Image", imageName);
 
         // Lưu mảng byte thành file hình ảnh
         Files.write(destinationFile, imageBytes);

@@ -19,26 +19,27 @@ public class MonHocController {
     private MonHocService monHocService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ResponseEntity<MonHoc> monHocTheoMa(@RequestParam("ma-mon-hoc") String maMh){
+    public ResponseEntity<MonHoc> monHocTheoMa(@RequestParam("ma-mon-hoc") String maMh) {
         MonHoc monHoc = monHocService.monHocTheoMa(maMh);
-        if(monHoc == null){
+        if (monHoc == null) {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(monHoc, HttpStatus.OK);
         }
     }
+
     @RequestMapping(value = "/danh-sach-mon-hoc", method = RequestMethod.GET)
-    public ResponseEntity<List<MonHoc>> danhSachMonHoc(){
+    public ResponseEntity<List<MonHoc>> danhSachMonHoc() {
         List<MonHoc> danhSachMonHoc = monHocService.danhSachTatCaMonHoc();
-        if(danhSachMonHoc.isEmpty()){
+        if (danhSachMonHoc.isEmpty()) {
             return new ResponseEntity(HttpStatus.NO_CONTENT); // trả về mã lỗi 204
         }
         return new ResponseEntity<>(danhSachMonHoc, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/them-mon-hoc", method = RequestMethod.POST)
-    public ResponseEntity<?> themMonHoc(@Validated @RequestBody MonHoc monHoc){
-        if(monHocService.themMonHoc(monHoc) == 0){ // them mon hoc that bai
+    public ResponseEntity<?> themMonHoc(@Validated @RequestBody MonHoc monHoc) {
+        if (monHocService.themMonHoc(monHoc) == 0) { // them mon hoc that bai
             return ResponseEntity.badRequest().build();
         } else {
             return ResponseEntity.ok().build(); // them mon hoc thanh cong
@@ -50,25 +51,28 @@ public class MonHocController {
         Map<String, ?> x = monHocService.soTCMonHoc(tenMH);
         return new ResponseEntity<>(x, HttpStatus.OK);
     }
+
     @RequestMapping(value = "/them-mon-hoc-moi", method = RequestMethod.POST)
-    public ResponseEntity<?> themMonHocMoi(@Validated @RequestBody MonHocDTO monHoc){
-        if(monHocService.themMonHocMoi(monHoc) == 0){
+    public ResponseEntity<?> themMonHocMoi(@Validated @RequestBody MonHoc monHoc) {
+        if (monHocService.themMonHocMoi(monHoc) == 0) {
             return ResponseEntity.badRequest().build();
         } else {
             return ResponseEntity.ok().build();
         }
     }
+
     @RequestMapping(value = "/update-mon-hoc", method = RequestMethod.POST)
-    public ResponseEntity<?> updateMonHoc(@Validated @RequestBody MonHocDTO monHoc){
-        if(monHocService.updateMonHoc(monHoc) == 0){
+    public ResponseEntity<?> updateMonHoc(@Validated @RequestBody MonHoc monHoc) {
+        if (monHocService.updateMonHoc(monHoc) == 0) {
             return ResponseEntity.badRequest().build();
         } else {
             return ResponseEntity.ok().build();
         }
     }
+
     @RequestMapping(value = "/xoa-mon-hoc", method = RequestMethod.POST)
-    public ResponseEntity<?> xoaMonHoc(@Validated @RequestParam("mamh") String mamh){
-        if(monHocService.xoaMonHoc(mamh) == 0){
+    public ResponseEntity<?> xoaMonHoc(@Validated @RequestParam("mamh") String mamh) {
+        if (monHocService.xoaMonHoc(mamh) == 0) {
             return ResponseEntity.badRequest().build();
         } else {
             return ResponseEntity.ok().build();

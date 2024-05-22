@@ -1,28 +1,26 @@
 package ptithcm.API_QLDSV_TC.DTO;
 
-
 import java.time.LocalDate;
-
 
 public class SinhVienDTO {
     private String masv;
     private String ho;
     private String ten;
-    private  Boolean phai;
+    private Boolean phai;
     private String diachi;
     private String ngaysinh;
     private String malop;
-    private Boolean danghihoc ;
+    private Boolean danghihoc;
     private String sdt;
     private String hinhanh;
     private String email;
-    public SinhVienDTO()
-    {
+
+    public SinhVienDTO() {
 
     }
 
-
-    public SinhVienDTO(String masv, String ho, String ten, Boolean phai, String diachi, String ngaysinh, String malop, Boolean danghihoc, String sdt, String hinhanh, String email) {
+    public SinhVienDTO(String masv, String ho, String ten, Boolean phai, String diachi, String ngaysinh, String malop,
+            Boolean danghihoc, String sdt, String hinhanh, String email) {
         this.masv = masv;
         this.ho = ho;
         this.ten = ten;
@@ -122,6 +120,13 @@ public class SinhVienDTO {
 
     public void setSdt(String sdt) {
         this.sdt = sdt;
+    }
+
+    @Override
+    public String toString() {
+        return "SinhVienDTO [masv=" + masv + ", ho=" + ho + ", ten=" + ten + ", phai=" + phai + ", diachi=" + diachi
+                + ", ngaysinh=" + ngaysinh + ", malop=" + malop + ", danghihoc=" + danghihoc + ", sdt=" + sdt
+                + ", hinhanh=" + hinhanh + ", email=" + email + "]";
     }
 
 }

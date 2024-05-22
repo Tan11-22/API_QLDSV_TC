@@ -1,6 +1,5 @@
 package ptithcm.API_QLDSV_TC.Service;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -27,12 +26,13 @@ public class TaiKhoanService {
 
     @Autowired
     LopService lopService;
-    public TaiKhoanDTO getInfo (String username) {
+
+    public TaiKhoanDTO getInfo(String username) {
         Optional<TaiKhoan> optionalTaiKhoan = taiKhoanRepository.findById(username);
         TaiKhoan taiKhoan = optionalTaiKhoan.get();
         TaiKhoanDTO taiKhoanDTO = new TaiKhoanDTO();
         taiKhoanDTO.setUsername(username);
-        if(taiKhoan.getQuyen().getTenQuyen().equals("SINHVIEN")) {
+        if (taiKhoan.getQuyen().getTenQuyen().equals("SINHVIEN")) {
 
             taiKhoanDTO.setHo(taiKhoan.getSinhVien().getHo());
             taiKhoanDTO.setTen(taiKhoan.getSinhVien().getTen());
@@ -44,6 +44,7 @@ public class TaiKhoanService {
         }
         return taiKhoanDTO;
     }
+
     public boolean checkStatus(String username) {
         Optional<TaiKhoan> optionalTaiKhoan = taiKhoanRepository.findById(username);
         if (optionalTaiKhoan.isEmpty()) {
@@ -52,10 +53,9 @@ public class TaiKhoanService {
         return !optionalTaiKhoan.get().getTrangThai();
     }
 
-
     public boolean saveNewLogin(TaiKhoanDTO taiKhoanDTO) {
         try {
-            if(taiKhoanDTO.getIdQuyen() == 1){
+            if (taiKhoanDTO.getIdQuyen() == 1) {
                 taiKhoanRepository.taoTaiKhoanSinhVien(
                         taiKhoanDTO.getUsername(),
                         taiKhoanDTO.getPassword(),
@@ -66,8 +66,7 @@ public class TaiKhoanService {
                         taiKhoanDTO.getMa(),
                         false,
                         taiKhoanDTO.getSdt(),
-                        taiKhoanDTO.getEmail()
-                );
+                        taiKhoanDTO.getEmail());
             } else {
                 taiKhoanRepository.taoTaiKhoanGiangVien(
                         taiKhoanDTO.getUsername(),
@@ -77,8 +76,7 @@ public class TaiKhoanService {
                         taiKhoanDTO.getTen(),
                         taiKhoanDTO.getMa(),
                         taiKhoanDTO.getSdt(),
-                        taiKhoanDTO.getEmail()
-                );
+                        taiKhoanDTO.getEmail());
             }
         } catch (DataAccessException dataAccessException) {
             System.out.println(dataAccessException.getMessage());
@@ -86,18 +84,19 @@ public class TaiKhoanService {
         }
         return true;
     }
+
     public boolean checkUsername(String username) {
-        if(taiKhoanRepository.findById(username).isEmpty()) {
+        if (taiKhoanRepository.findById(username).isEmpty()) {
             return false;
         } else {
             return true;
         }
     }
 
-    public List<Map<String,Object>> findDanhSachTaiKhoan(int id) {
-        if (id ==1){
+    public List<Map<String, Object>> findDanhSachTaiKhoan(int id) {
+        if (id == 1) {
             return taiKhoanRepository.findDanhSachTKSV();
-        }else {
+        } else {
             return taiKhoanRepository.findDanhSachTKGV();
         }
     }
@@ -105,12 +104,16 @@ public class TaiKhoanService {
     public boolean resetPassword(String username) {
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         String encodePass = encoder.encode("123456");
-        sinhVienRepository.doiMatKhau(username,encodePass);
+        sinhVienRepository.doiMatKhau(username, encodePass);
         return true;
     }
 
     public boolean setStatusTK(String username, boolean trangThai) {
-        taiKhoanRepository.setStatusTK(username,trangThai);
+        taiKhoanRepository.setStatusTK(username, trangThai);
         return true;
+    }
+
+    public List<Map<String, Object>> findListDanhSachCTHP(String maSV, String nienKhoa, int hocKy) {
+        return taiKhoanRepository.findDanhSachCTHP(maSV, nienKhoa, hocKy);
     }
 }
